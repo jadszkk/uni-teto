@@ -1,0 +1,55 @@
+# UniTeto
+
+Plataforma web de busca de moradia estudantil (quartos, vagas em repúblicas,
+quitinetes) por **proximidade real ao campus**. TCC de Sistemas para Internet,
+feito por uma dupla, com prazo curto: priorize simplicidade, código limpo e bem
+testado em vez de muitas funcionalidades.
+
+O diferencial técnico é a busca por distância geográfica real até o campus (não
+apenas filtro por cidade/bairro). Essa parte deve ser bem implementada e testada.
+
+## Escopo do MVP
+
+- Cadastro e autenticação com validação de e-mail institucional (domínio)
+- Cadastro de campi (nome, latitude/longitude)
+- Cadastro de anúncios (endereço, preço, tipo, fotos, descrição)
+- Geocodificação automática do endereço do anúncio (Nominatim)
+- Busca/listagem com filtros: preço, tipo de vaga, distância até o campus
+- Mapa interativo com anúncios e localização do campus
+- Contato via link direto (WhatsApp ou e-mail), sem chat interno
+
+**Fora do escopo** (não implementar sem pedido explícito): chat em tempo real,
+avaliações/reputação, painel admin completo, notificações, score de
+compatibilidade.
+
+## Stack
+
+- TypeScript em tudo; Next.js (App Router) + React
+- PostgreSQL + PostGIS para distância (fallback: Haversine); ORM Prisma
+- Auth.js (NextAuth) ou Better Auth, com validação de domínio institucional
+- Zod para validação; React Hook Form nos formulários
+- Tailwind CSS + shadcn/ui
+- Leaflet + OpenStreetMap; geocodificação via Nominatim
+- Imagens: Cloudinary ou Supabase Storage
+- Testes: Vitest (unitários), Playwright (E2E)
+- Docker + Docker Compose (app, Postgres, Mailpit)
+- CI: GitHub Actions (`.github/workflows/ci.yml`): lint, `tsc --noEmit`, testes e
+  build
+
+Prefira soluções simples e bem documentadas; o time (2 pessoas) mantém tudo
+sozinho.
+
+## Fluxo Git
+
+- Apenas duas branches: `main` (estável) e `dev` (integração). **Sem branches de
+  feature.**
+- Commits e push direto na `dev`.
+- A `main` só recebe mudanças via PR `dev → main`, com CI passando. Nunca fazer
+  push direto na `main`.
+- Commits e PRs sem atribuição ao Claude (configurado em `.claude/settings.json`).
+- PRs usam o template em `.github/pull_request_template.md`.
+
+## Idioma
+
+Comunicação, documentação, mensagens de commit e textos da interface em
+português (pt-BR).
