@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # UniTeto
 
 Plataforma web de busca de moradia estudantil (quartos, vagas em repúblicas,
@@ -38,6 +40,18 @@ compatibilidade.
 
 Prefira soluções simples e bem documentadas; o time (2 pessoas) mantém tudo
 sozinho.
+
+## Convenções do código
+
+- Setup, scripts e estrutura de pastas: ver `README.md`. Tarefas: `docs/TAREFAS.md`.
+- Antes de commitar: `npm run lint`, `npm run typecheck`, `npm run test`.
+- Prisma 7: config em `prisma.config.ts`, client gerado em `src/generated/prisma`
+  (importar de `@/generated/prisma/client`), instância única em `src/lib/prisma.ts`.
+- Coordenadas em colunas `latitude`/`longitude`; distância via PostGIS em SQL.
+  `src/lib/geo/distance.ts` tem Haversine para exibição/fallback.
+- Preços em centavos (`priceCents`).
+- Componentes de UI: `npx shadcn@latest add <nome>` (vão para `src/components/ui`).
+- Testes unitários ao lado do código (`*.test.ts`); E2E em `e2e/`.
 
 ## Fluxo Git
 
