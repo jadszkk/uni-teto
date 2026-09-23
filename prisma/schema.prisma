@@ -1,0 +1,113 @@
+// Schema do banco do UniTeto.
+// Docs: https://pris.ly/d/prisma-schema
+//
+// Coordenadas ficam em colunas latitude/longitude (Float). A busca por distância
+// usa PostGIS em SQL (ST_DWithin/ST_Distance sobre geography), montando o ponto
+// a partir dessas colunas. A extensão é habilitada na primeira migration.
+//
+// As tabelas de autenticação (Account, Session, VerificationToken...) serão
+// adicionadas junto com a biblioteca de auth escolhida.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model University {
+  id          String   @id @default(cuid())
+  name        String
+  acronym     String
+  // Domínio do e-mail institucional, ex: "aluno.ufxx.edu.br"
+  emailDomain String   @unique
+  campuses    Campus[]
+  users       User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Campus {
+  id           String     @id @default(cuid())
+  name         String
+  universityId String
+  university   University @relation(fields: [universityId], references: [id])
+  city         String
+  state        String     @db.Char(2)
+  latitude     Float
+  longitude    Float
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([universityId])
+}
+
+model User {
+  id            String      @id @default(cuid())
+  name          String?
+  email         String      @unique
+  emailVerified DateTime?
+  image         String?
+  // Número usado no link de contato do WhatsApp (apenas dígitos, com DDI)
+  whatsapp      String?
+  universityId  String?
+  university    University? @relation(fields: [universityId], references: [id])
+  listings      Listing[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([universityId])
+}
+
+enum ListingType {
+  QUARTO
+  VAGA_REPUBLICA
+  QUITINETE
+}
+
+enum ListingStatus {
+  ATIVO
+  PAUSADO
+}
+
+model Listing {
+  id           String         @id @default(cuid())
+  title        String
+  description  String
+  type         ListingType
+  status       ListingStatus  @default(ATIVO)
+  // Preço mensal em centavos, para evitar erros de ponto flutuante
+  priceCents   Int
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String         @db.Char(2)
+  zipCode      String         @db.Char(8)
+  // Preenchidas pela geocodificação (Nominatim) ao salvar o anúncio
+  latitude     Float
+  longitude    Float
+  ownerId      String
+  owner        User           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  photos       ListingPhoto[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([ownerId])
+  @@index([status, type, priceCents])
+}
+
+model ListingPhoto {
+  id        String   @id @default(cuid())
+  url       String
+  // Ordem de exibição; 0 é a foto de capa
+  position  Int      @default(0)
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([listingId])
+}

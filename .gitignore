@@ -45,3 +45,12 @@ docker-compose.override.yml
 
 # Vercel (se usarem)
 .vercel
+
+/src/generated/prisma
+
+# Prisma Client gerado (recriado pelo postinstall / npm run db:generate)
+src/generated/
+
+# Playwright
+playwright-report/
+test-results/

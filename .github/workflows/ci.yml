@@ -17,7 +17,7 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: 'npm'
 
       - name: Instalar dependências
@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
 
       - name: Checar tipos (TypeScript)
-        run: npx tsc --noEmit
+        run: npm run typecheck
 
       - name: Rodar testes
         run: npm run test
