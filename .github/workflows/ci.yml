@@ -37,3 +37,7 @@ jobs:
 
       - name: Build de produção
         run: npm run build
+        env:
+          # Valores só para o build do CI (sem uso real)
+          BETTER_AUTH_SECRET: ci-build-secret-sem-uso-real-0123456789
+          BETTER_AUTH_URL: http://localhost:3000
