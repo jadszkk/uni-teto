@@ -10,13 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getSession } from "@/lib/auth/session";
-import { SignUpForm } from "./sign-up-form";
+import { SignInForm } from "./sign-in-form";
 
 export const metadata: Metadata = {
-  title: "Criar conta | UniTeto",
+  title: "Entrar | UniTeto",
 };
 
-export default async function SignUpPage() {
+export default async function SignInPage() {
   if (await getSession()) redirect("/");
 
   return (
@@ -24,19 +24,19 @@ export default async function SignUpPage() {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>
-            <h1>Criar conta</h1>
+            <h1>Entrar</h1>
           </CardTitle>
           <CardDescription>
-            Cadastre-se com o e-mail institucional da sua universidade.
+            Acesse sua conta com o e-mail institucional.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <SignUpForm />
+          <SignInForm />
         </CardContent>
         <CardFooter className="text-sm text-muted-foreground">
-          Já tem conta?&nbsp;
-          <Link href="/login" className="font-medium underline">
-            Entrar
+          Ainda não tem conta?&nbsp;
+          <Link href="/cadastro" className="font-medium underline">
+            Criar conta
           </Link>
         </CardFooter>
       </Card>

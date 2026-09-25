@@ -53,6 +53,8 @@ sozinho.
 - Auth: config em `src/lib/auth/server.ts`, cliente em `src/lib/auth/client.ts`,
   rotas em `/api/auth/*`. Domínios permitidos = `University.emailDomain`; a
   checagem roda no hook `databaseHooks.user.create.before` (servidor).
+- Sessão no servidor: `getSession()` de `src/lib/auth/session.ts`; no navegador,
+  `authClient.useSession()`. Após login/logout, `router.refresh()`.
 - Depois de mudar o schema, `npm run db:migrate` (já roda o `prisma generate`;
   no Prisma 7 o `migrate dev` sozinho não regenera o client).
 - Componentes de UI: `npx shadcn@latest add <nome>` (vão para `src/components/ui`).

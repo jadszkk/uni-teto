@@ -17,8 +17,14 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: PASSWORD_MIN_LENGTH,
     maxPasswordLength: PASSWORD_MAX_LENGTH,
-    // O login entra na #19 e a verificação de e-mail na #18
+    // Depois do cadastro a pessoa vai para /login (verificação de e-mail: #18)
     autoSignIn: false,
+  },
+  session: {
+    // Sessão persistente: dura 7 dias e é renovada (no máximo 1x por dia)
+    // enquanto o usuário continua usando o site
+    expiresIn: 60 * 60 * 24 * 7,
+    updateAge: 60 * 60 * 24,
   },
   user: {
     additionalFields: {

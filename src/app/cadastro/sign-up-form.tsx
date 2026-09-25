@@ -2,15 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm, type FieldError as FormError } from "react-hook-form";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { FormField } from "@/components/form-field";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { FieldError, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { signUpSchema, type SignUpInput } from "@/lib/auth/sign-up-schema";
@@ -46,7 +42,10 @@ export function SignUpForm() {
   if (createdEmail) {
     return (
       <p role="status" className="text-sm">
-        Conta criada para <strong>{createdEmail}</strong>.
+        Conta criada para <strong>{createdEmail}</strong>.{" "}
+        <Link href="/login" className="font-medium underline">
+          Entrar
+        </Link>
       </p>
     );
   }
@@ -109,28 +108,5 @@ export function SignUpForm() {
         </Button>
       </FieldGroup>
     </form>
-  );
-}
-
-function FormField({
-  id,
-  label,
-  description,
-  error,
-  children,
-}: {
-  id: string;
-  label: string;
-  description?: string;
-  error?: FormError;
-  children: React.ReactNode;
-}) {
-  return (
-    <Field data-invalid={!!error}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
-      {children}
-      {description && <FieldDescription>{description}</FieldDescription>}
-      <FieldError errors={[error]} />
-    </Field>
   );
 }
