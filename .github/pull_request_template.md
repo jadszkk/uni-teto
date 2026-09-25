@@ -9,6 +9,7 @@
 ## Como testar
 
 <!-- Passo a passo para o revisor testar localmente -->
+
 1.
 2.
 3.
@@ -28,6 +29,6 @@
 ## Checklist
 
 - [ ] Testei localmente e funciona como esperado
-- [ ] O código segue o padrão do projeto (lint sem erros)
+- [ ] O código segue o padrão do projeto (lint e Prettier sem erros)
 - [ ] Adicionei/atualizei testes, se aplicável
 - [ ] Não deixei console.log, código comentado ou credenciais no código

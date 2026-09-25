@@ -1,0 +1,6 @@
+# Arquivos gerados ou de terceiros
+src/generated/
+prisma/migrations/
+playwright-report/
+test-results/
+package-lock.json

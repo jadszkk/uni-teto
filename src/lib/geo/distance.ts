@@ -15,7 +15,10 @@ function toRadians(degrees: number) {
  * A busca principal usa PostGIS no banco; esta função serve para exibir
  * distâncias na interface e como fallback caso o PostGIS não esteja disponível.
  */
-export function haversineDistanceMeters(a: Coordinates, b: Coordinates): number {
+export function haversineDistanceMeters(
+  a: Coordinates,
+  b: Coordinates,
+): number {
   const dLat = toRadians(b.latitude - a.latitude);
   const dLon = toRadians(b.longitude - a.longitude);
   const lat1 = toRadians(a.latitude);

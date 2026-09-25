@@ -1,0 +1,2 @@
+# Força LF em todas as máquinas (o Prettier exige LF; evita diferenças Windows x Linux)
+* text=auto eol=lf

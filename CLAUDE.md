@@ -35,7 +35,7 @@ compatibilidade.
 - Imagens: Cloudinary ou Supabase Storage
 - Testes: Vitest (unitários), Playwright (E2E)
 - Docker + Docker Compose (app, Postgres, Mailpit)
-- CI: GitHub Actions (`.github/workflows/ci.yml`): lint, `tsc --noEmit`, testes e
+- CI: GitHub Actions (`.github/workflows/ci.yml`): lint, Prettier, `tsc --noEmit`, testes e
   build
 
 Prefira soluções simples e bem documentadas; o time (2 pessoas) mantém tudo
@@ -44,7 +44,7 @@ sozinho.
 ## Convenções do código
 
 - Setup, scripts e estrutura de pastas: ver `README.md`. Tarefas: `docs/TAREFAS.md`.
-- Antes de commitar: `npm run lint`, `npm run typecheck`, `npm run test`.
+- Antes de commitar: `npm run format`, `npm run lint`, `npm run typecheck`, `npm run test`.
 - Prisma 7: config em `prisma.config.ts`, client gerado em `src/generated/prisma`
   (importar de `@/generated/prisma/client`), instância única em `src/lib/prisma.ts`.
 - Coordenadas em colunas `latitude`/`longitude`; distância via PostGIS em SQL.

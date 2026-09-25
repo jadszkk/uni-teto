@@ -7,7 +7,8 @@ de Sistemas para Internet.
 ## Stack
 
 Next.js (App Router) · TypeScript · PostgreSQL + PostGIS · Prisma · Tailwind CSS
-+ shadcn/ui · Zod · React Hook Form · Vitest · Playwright · Docker Compose
+· shadcn/ui · Zod · React Hook Form · Vitest · Playwright · Prettier · Docker
+Compose
 
 ## Pré-requisitos
 
@@ -37,18 +38,20 @@ E-mails enviados em desenvolvimento aparecem no Mailpit: http://localhost:8025
 
 ## Scripts
 
-| Comando | O que faz |
-|---|---|
-| `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Build de produção |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | Checagem de tipos do TypeScript |
-| `npm run test` | Testes unitários (Vitest) |
-| `npm run test:watch` | Vitest em modo watch |
-| `npm run test:e2e` | Testes ponta a ponta (Playwright). Na primeira vez: `npx playwright install chromium` |
-| `npm run db:migrate` | Cria/aplica migrations em desenvolvimento |
-| `npm run db:generate` | Regenera o Prisma Client |
-| `npm run db:studio` | Abre o Prisma Studio para ver os dados |
+| Comando                | O que faz                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| `npm run dev`          | Servidor de desenvolvimento                                                           |
+| `npm run build`        | Build de produção                                                                     |
+| `npm run lint`         | ESLint                                                                                |
+| `npm run format`       | Formata o código com o Prettier                                                       |
+| `npm run format:check` | Verifica a formatação (roda no CI)                                                    |
+| `npm run typecheck`    | Checagem de tipos do TypeScript                                                       |
+| `npm run test`         | Testes unitários (Vitest)                                                             |
+| `npm run test:watch`   | Vitest em modo watch                                                                  |
+| `npm run test:e2e`     | Testes ponta a ponta (Playwright). Na primeira vez: `npx playwright install chromium` |
+| `npm run db:migrate`   | Cria/aplica migrations em desenvolvimento                                             |
+| `npm run db:generate`  | Regenera o Prisma Client                                                              |
+| `npm run db:studio`    | Abre o Prisma Studio para ver os dados                                                |
 
 ## Estrutura
 
@@ -67,6 +70,6 @@ docs/                documentação do projeto
 - Branches: `main` (estável) e `dev` (integração). Não usamos branches de feature.
 - O trabalho do dia a dia vai direto na `dev`.
 - A `main` só recebe mudanças por PR `dev → main`, com o CI passando.
-- O CI (`.github/workflows/ci.yml`) roda lint, tipos, testes e build.
+- O CI (`.github/workflows/ci.yml`) roda lint, formatação (Prettier), tipos, testes e build.
 
 Divisão de tarefas do MVP: [docs/TAREFAS.md](docs/TAREFAS.md).
