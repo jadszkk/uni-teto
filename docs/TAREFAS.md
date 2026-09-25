@@ -9,11 +9,11 @@ Marque `[x]` ao concluir. Como os dois trabalham direto na `dev`, façam
 
 ## Frente A — Usuários, autenticação e campi
 
-- [ ] Escolher a biblioteca de auth (Auth.js ou Better Auth) e registrar a decisão
+- [x] Escolher a biblioteca de auth (Auth.js ou Better Auth) e registrar a decisão
       no `CLAUDE.md`
-- [ ] Adicionar as tabelas de auth ao `prisma/schema.prisma` e gerar a migration
+- [x] Adicionar as tabelas de auth ao `prisma/schema.prisma` e gerar a migration
 - [ ] Cadastro/login com verificação por e-mail (usando o Mailpit em dev)
-- [ ] Validar o domínio do e-mail contra `University.emailDomain` e vincular o
+- [x] Validar o domínio do e-mail contra `University.emailDomain` e vincular o
       usuário à universidade
 - [ ] Página de perfil (nome, WhatsApp)
 - [ ] Proteger as rotas que exigem login (criar/editar anúncio)

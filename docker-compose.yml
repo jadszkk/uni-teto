@@ -13,6 +13,9 @@ services:
       DATABASE_URL: postgresql://uniteto:uniteto@db:5432/uniteto?schema=public
       SMTP_HOST: mailpit
       SMTP_PORT: "1025"
+      # Segredo só para desenvolvimento local
+      BETTER_AUTH_SECRET: dev-secret-uniteto-nao-usar-em-producao
+      BETTER_AUTH_URL: http://localhost:3000
       PRISMA_HIDE_UPDATE_MESSAGE: "true"
     # O `watch` copia os arquivos alterados para o container. É mais confiável
     # que montar a pasta como volume, que no Windows/Mac não avisa o Next das

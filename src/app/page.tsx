@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
       <p className="max-w-md text-lg text-muted-foreground">
         Encontre quartos, vagas em repúblicas e quitinetes perto do seu campus.
       </p>
-      <Button disabled>Em breve</Button>
+      <Link href="/cadastro" className={buttonVariants()}>
+        Criar conta
+      </Link>
     </main>
   );
 }

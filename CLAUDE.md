@@ -28,7 +28,7 @@ compatibilidade.
 
 - TypeScript em tudo; Next.js (App Router) + React
 - PostgreSQL + PostGIS para distância (fallback: Haversine); ORM Prisma
-- Auth.js (NextAuth) ou Better Auth, com validação de domínio institucional
+- Better Auth (e-mail e senha), com validação de domínio institucional
 - Zod para validação; React Hook Form nos formulários
 - Tailwind CSS + shadcn/ui
 - Leaflet + OpenStreetMap; geocodificação via Nominatim
@@ -50,6 +50,11 @@ sozinho.
 - Coordenadas em colunas `latitude`/`longitude`; distância via PostGIS em SQL.
   `src/lib/geo/distance.ts` tem Haversine para exibição/fallback.
 - Preços em centavos (`priceCents`).
+- Auth: config em `src/lib/auth/server.ts`, cliente em `src/lib/auth/client.ts`,
+  rotas em `/api/auth/*`. Domínios permitidos = `University.emailDomain`; a
+  checagem roda no hook `databaseHooks.user.create.before` (servidor).
+- Depois de mudar o schema, `npm run db:migrate` (já roda o `prisma generate`;
+  no Prisma 7 o `migrate dev` sozinho não regenera o client).
 - Componentes de UI: `npx shadcn@latest add <nome>` (vão para `src/components/ui`).
 - Testes unitários ao lado do código (`*.test.ts`); E2E em `e2e/`.
 

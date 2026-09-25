@@ -83,7 +83,7 @@ achar que todos os arquivos foram apagados (se acontecer, `git reset` resolve).
 | `npm run test`         | Testes unitários (Vitest)                                                             |
 | `npm run test:watch`   | Vitest em modo watch                                                                  |
 | `npm run test:e2e`     | Testes ponta a ponta (Playwright). Na primeira vez: `npx playwright install chromium` |
-| `npm run db:migrate`   | Cria/aplica migrations em desenvolvimento                                             |
+| `npm run db:migrate`   | Cria/aplica migrations e regenera o Prisma Client                                     |
 | `npm run db:generate`  | Regenera o Prisma Client                                                              |
 | `npm run db:studio`    | Abre o Prisma Studio para ver os dados                                                |
 
