@@ -12,7 +12,7 @@ Marque `[x]` ao concluir. Como os dois trabalham direto na `dev`, façam
 - [x] Escolher a biblioteca de auth (Auth.js ou Better Auth) e registrar a decisão
       no `CLAUDE.md`
 - [x] Adicionar as tabelas de auth ao `prisma/schema.prisma` e gerar a migration
-- [ ] Cadastro/login com verificação por e-mail (usando o Mailpit em dev)
+- [x] Cadastro/login com verificação por e-mail (usando o Mailpit em dev)
 - [x] Validar o domínio do e-mail contra `University.emailDomain` e vincular o
       usuário à universidade
 - [ ] Página de perfil (nome, WhatsApp)

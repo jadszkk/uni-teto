@@ -2,13 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FormField } from "@/components/form-field";
 import { Button } from "@/components/ui/button";
 import { FieldError, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
+import { EMAIL_VERIFIED_PATH } from "@/lib/auth/routes";
 import { signUpSchema, type SignUpInput } from "@/lib/auth/sign-up-schema";
 
 export function SignUpForm() {
@@ -22,7 +22,12 @@ export function SignUpForm() {
 
   async function onSubmit(input: SignUpInput) {
     const { name, email, password } = signUpSchema.parse(input);
-    const { error } = await authClient.signUp.email({ name, email, password });
+    const { error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      callbackURL: EMAIL_VERIFIED_PATH,
+    });
 
     if (!error) {
       setCreatedEmail(email);
@@ -41,12 +46,15 @@ export function SignUpForm() {
 
   if (createdEmail) {
     return (
-      <p role="status" className="text-sm">
-        Conta criada para <strong>{createdEmail}</strong>.{" "}
-        <Link href="/login" className="font-medium underline">
-          Entrar
-        </Link>
-      </p>
+      <div role="status" className="space-y-2 text-sm">
+        <p>
+          Enviamos um link de confirmação para <strong>{createdEmail}</strong>.
+        </p>
+        <p className="text-muted-foreground">
+          Abra o e-mail e clique no link para ativar sua conta. Se não
+          encontrar, confira a caixa de spam.
+        </p>
+      </div>
     );
   }
 

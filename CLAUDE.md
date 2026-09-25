@@ -55,6 +55,8 @@ sozinho.
   checagem roda no hook `databaseHooks.user.create.before` (servidor).
 - Sessão no servidor: `getSession()` de `src/lib/auth/session.ts`; no navegador,
   `authClient.useSession()`. Após login/logout, `router.refresh()`.
+- Login exige e-mail confirmado (`requireEmailVerification`): sem isso não há
+  sessão. E-mails em `src/lib/email/` (nodemailer; em dev caem no Mailpit).
 - Depois de mudar o schema, `npm run db:migrate` (já roda o `prisma generate`;
   no Prisma 7 o `migrate dev` sozinho não regenera o client).
 - Componentes de UI: `npx shadcn@latest add <nome>` (vão para `src/components/ui`).

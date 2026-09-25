@@ -21,15 +21,12 @@ export function SignInForm() {
 
   async function onSubmit(input: SignInInput) {
     const { email, password } = signInSchema.parse(input);
+    // Sem `callbackURL`: com ele o Better Auth redirecionaria o navegador
+    // sozinho após o login. O link reenviado (e-mail não confirmado) leva à home.
     const { error } = await authClient.signIn.email({ email, password });
 
     if (error) {
-      setError("root", {
-        message:
-          error.code === "INVALID_EMAIL_OR_PASSWORD"
-            ? "E-mail ou senha incorretos."
-            : "Não foi possível entrar. Tente novamente.",
-      });
+      setError("root", { message: signInErrorMessage(error.code) });
       return;
     }
 
@@ -69,4 +66,15 @@ export function SignInForm() {
       </FieldGroup>
     </form>
   );
+}
+
+function signInErrorMessage(code: string | undefined) {
+  switch (code) {
+    case "INVALID_EMAIL_OR_PASSWORD":
+      return "E-mail ou senha incorretos.";
+    case "EMAIL_NOT_VERIFIED":
+      return "Confirme seu e-mail antes de entrar. Enviamos um novo link de confirmação.";
+    default:
+      return "Não foi possível entrar. Tente novamente.";
+  }
 }
