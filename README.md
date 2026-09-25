@@ -56,6 +56,19 @@ No Windows/Mac rodar fora do Docker (`npm run dev`) costuma ser mais rápido; us
 o modo acima se preferir não instalar o Node ou para reproduzir o ambiente do
 colega.
 
+### Fotos (Cloudinary)
+
+O envio de fotos usa o [Cloudinary](https://cloudinary.com) (plano gratuito).
+Sem configurar, o site funciona normalmente e só o botão de foto fica
+desativado. Para ativar, crie uma conta, copie o _Cloud name_, a _API Key_ e o
+_API Secret_ (Settings → API Keys) para o `.env`:
+
+```bash
+CLOUDINARY_CLOUD_NAME="..."
+CLOUDINARY_API_KEY="..."
+CLOUDINARY_API_SECRET="..."
+```
+
 ### Windows: quebras de linha
 
 O projeto usa LF (ver `.gitattributes`). Se o clone foi feito antes disso e o

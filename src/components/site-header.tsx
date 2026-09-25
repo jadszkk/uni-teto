@@ -2,6 +2,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { getSession } from "@/lib/auth/session";
 import { SignOutButton } from "./sign-out-button";
+import { UserAvatar } from "./user-avatar";
 
 export async function SiteHeader() {
   const session = await getSession();
@@ -16,9 +17,17 @@ export async function SiteHeader() {
         <nav className="flex items-center gap-2 text-sm">
           {session ? (
             <>
-              <span className="text-muted-foreground">
+              <Link
+                href="/perfil"
+                className="flex items-center gap-2 rounded-lg px-2 py-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+              >
+                <UserAvatar
+                  name={session.user.name}
+                  image={session.user.image}
+                  size={24}
+                />
                 Olá, {session.user.name}
-              </span>
+              </Link>
               <SignOutButton />
             </>
           ) : (

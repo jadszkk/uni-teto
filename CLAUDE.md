@@ -32,7 +32,7 @@ compatibilidade.
 - Zod para validação; React Hook Form nos formulários
 - Tailwind CSS + shadcn/ui
 - Leaflet + OpenStreetMap; geocodificação via Nominatim
-- Imagens: Cloudinary ou Supabase Storage
+- Imagens: Cloudinary (upload direto do navegador com assinatura do servidor)
 - Testes: Vitest (unitários), Playwright (E2E)
 - Docker + Docker Compose (app, Postgres, Mailpit); app opcional via `--profile app`
 - CI: GitHub Actions (`.github/workflows/ci.yml`): lint, Prettier, `tsc --noEmit`, testes e
@@ -50,6 +50,14 @@ sozinho.
 - Coordenadas em colunas `latitude`/`longitude`; distância via PostGIS em SQL.
   `src/lib/geo/distance.ts` tem Haversine para exibição/fallback.
 - Preços em centavos (`priceCents`).
+- WhatsApp guardado só com dígitos e DDI (`5586999998888`):
+  `normalizeWhatsapp`/`formatWhatsapp` em `src/lib/profile/whatsapp.ts`.
+- Fotos: `src/lib/cloudinary/`. O servidor assina o upload fixando o
+  `public_id`; o navegador envia direto ao Cloudinary; ao salvar, confira a URL
+  (ex: `isOwnAvatarUrl`). Sem as variáveis `CLOUDINARY_*` o upload fica
+  desativado e o resto funciona.
+- Server Actions: sempre conferir a sessão (`getSession()`) e validar com Zod
+  dentro da action; podem ser chamadas direto por POST.
 - Seed: dados em `src/lib/seed/universities.ts` (com fonte de cada domínio e
   coordenada), script em `prisma/seed.ts`, `npm run db:seed`. Só adicionar
   universidade com domínio de e-mail de aluno confirmado em fonte oficial.

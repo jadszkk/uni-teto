@@ -15,7 +15,7 @@ Marque `[x]` ao concluir. Como os dois trabalham direto na `dev`, façam
 - [x] Cadastro/login com verificação por e-mail (usando o Mailpit em dev)
 - [x] Validar o domínio do e-mail contra `University.emailDomain` e vincular o
       usuário à universidade
-- [ ] Página de perfil (nome, WhatsApp)
+- [x] Página de perfil (nome, WhatsApp e foto)
 - [ ] Proteger as rotas que exigem login (criar/editar anúncio)
 - [x] Seed (`prisma/seed.ts`) com universidades e campi reais, com coordenadas
 - [ ] Layout base: cabeçalho, navegação e estado logado/deslogado
@@ -26,7 +26,8 @@ Marque `[x]` ao concluir. Como os dois trabalham direto na `dev`, façam
       respeitando a política de uso (User-Agent e 1 requisição/s)
 - [ ] Formulário de criar/editar anúncio (React Hook Form + Zod), com
       geocodificação do endereço ao salvar
-- [ ] Upload de fotos (escolher Cloudinary ou Supabase Storage)
+- [ ] Upload de fotos dos anúncios (Cloudinary já escolhido e configurado na
+      foto de perfil: reaproveitar `src/lib/cloudinary/`)
 - [ ] Consulta de busca com PostGIS: filtro por raio até o campus, preço e tipo,
       ordenada por distância (`ST_DWithin` / `ST_Distance` sobre `geography`)
 - [ ] Testes de integração da busca por distância (o diferencial do TCC)
