@@ -34,7 +34,7 @@ compatibilidade.
 - Leaflet + OpenStreetMap; geocodificação via Nominatim
 - Imagens: Cloudinary ou Supabase Storage
 - Testes: Vitest (unitários), Playwright (E2E)
-- Docker + Docker Compose (app, Postgres, Mailpit)
+- Docker + Docker Compose (app, Postgres, Mailpit); app opcional via `--profile app`
 - CI: GitHub Actions (`.github/workflows/ci.yml`): lint, Prettier, `tsc --noEmit`, testes e
   build
 

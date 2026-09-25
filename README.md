@@ -13,7 +13,7 @@ Compose
 ## Pré-requisitos
 
 - Node.js 24 (versão em `.nvmrc`)
-- Docker Desktop (para o banco e o Mailpit)
+- Docker Desktop (para o banco e o Mailpit; opcionalmente, também a aplicação)
 
 ## Como rodar
 
@@ -35,6 +35,40 @@ npm run dev
 ```
 
 E-mails enviados em desenvolvimento aparecem no Mailpit: http://localhost:8025
+
+### Tudo no Docker (opcional)
+
+Para rodar também a aplicação dentro do Docker, sem precisar do Node instalado:
+
+```bash
+docker compose --profile app watch
+```
+
+Isso sobe app, Postgres e Mailpit, aplica as migrations e copia para o container
+cada arquivo salvo (a página recarrega sozinha). Se mudar `package.json` ou o
+schema do Prisma, a imagem é reconstruída automaticamente. `Ctrl+C` para sair
+e `docker compose --profile app down` para desligar tudo.
+
+No Windows/Mac rodar fora do Docker (`npm run dev`) costuma ser mais rápido; use
+o modo acima se preferir não instalar o Node ou para reproduzir o ambiente do
+colega.
+
+### Windows: quebras de linha
+
+O projeto usa LF (ver `.gitattributes`). Se o clone foi feito antes disso e o
+`npm run format:check` acusar todos os arquivos, rode uma vez, com as mudanças
+já commitadas:
+
+```bash
+git rm --cached -r .
+```
+
+```bash
+git reset --hard
+```
+
+Os dois comandos precisam ser rodados em sequência: só o primeiro faz o Git
+achar que todos os arquivos foram apagados (se acontecer, `git reset` resolve).
 
 ## Scripts
 
