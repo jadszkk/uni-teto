@@ -17,7 +17,7 @@ Marque `[x]` ao concluir. Como os dois trabalham direto na `dev`, façam
       usuário à universidade
 - [ ] Página de perfil (nome, WhatsApp)
 - [ ] Proteger as rotas que exigem login (criar/editar anúncio)
-- [ ] Seed (`prisma/seed.ts`) com universidades e campi reais, com coordenadas
+- [x] Seed (`prisma/seed.ts`) com universidades e campi reais, com coordenadas
 - [ ] Layout base: cabeçalho, navegação e estado logado/deslogado
 
 ## Frente B — Anúncios, busca por distância e mapa

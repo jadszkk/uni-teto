@@ -50,6 +50,9 @@ sozinho.
 - Coordenadas em colunas `latitude`/`longitude`; distância via PostGIS em SQL.
   `src/lib/geo/distance.ts` tem Haversine para exibição/fallback.
 - Preços em centavos (`priceCents`).
+- Seed: dados em `src/lib/seed/universities.ts` (com fonte de cada domínio e
+  coordenada), script em `prisma/seed.ts`, `npm run db:seed`. Só adicionar
+  universidade com domínio de e-mail de aluno confirmado em fonte oficial.
 - Auth: config em `src/lib/auth/server.ts`, cliente em `src/lib/auth/client.ts`,
   rotas em `/api/auth/*`. Domínios permitidos = `University.emailDomain`; a
   checagem roda no hook `databaseHooks.user.create.before` (servidor).

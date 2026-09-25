@@ -30,7 +30,10 @@ docker compose up -d
 # 4. Aplicar as migrations no banco
 npm run db:migrate
 
-# 5. Rodar a aplicação em http://localhost:3000
+# 5. Cadastrar universidades e campi iniciais (pode rodar de novo sem duplicar)
+npm run db:seed
+
+# 6. Rodar a aplicação em http://localhost:3000
 npm run dev
 ```
 
@@ -44,9 +47,9 @@ Para rodar também a aplicação dentro do Docker, sem precisar do Node instalad
 docker compose --profile app watch
 ```
 
-Isso sobe app, Postgres e Mailpit, aplica as migrations e copia para o container
-cada arquivo salvo (a página recarrega sozinha). Se mudar `package.json` ou o
-schema do Prisma, a imagem é reconstruída automaticamente. `Ctrl+C` para sair
+Isso sobe app, Postgres e Mailpit, aplica as migrations, roda o seed e copia
+para o container cada arquivo salvo (a página recarrega sozinha). Se mudar
+`package.json` ou o schema do Prisma, a imagem é reconstruída automaticamente. `Ctrl+C` para sair
 e `docker compose --profile app down` para desligar tudo.
 
 No Windows/Mac rodar fora do Docker (`npm run dev`) costuma ser mais rápido; use
@@ -84,6 +87,7 @@ achar que todos os arquivos foram apagados (se acontecer, `git reset` resolve).
 | `npm run test:watch`   | Vitest em modo watch                                                                  |
 | `npm run test:e2e`     | Testes ponta a ponta (Playwright). Na primeira vez: `npx playwright install chromium` |
 | `npm run db:migrate`   | Cria/aplica migrations e regenera o Prisma Client                                     |
+| `npm run db:seed`      | Cadastra universidades e campi iniciais (`src/lib/seed/`)                             |
 | `npm run db:generate`  | Regenera o Prisma Client                                                              |
 | `npm run db:studio`    | Abre o Prisma Studio para ver os dados                                                |
 

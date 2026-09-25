@@ -19,5 +19,6 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 EXPOSE 3000
 
-# Aplica as migrations pendentes e sobe o servidor de desenvolvimento
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run dev"]
+# Aplica as migrations pendentes, popula universidades/campi (sem duplicar)
+# e sobe o servidor de desenvolvimento
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && npm run dev"]
